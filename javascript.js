@@ -2,7 +2,9 @@ window.addEventListener("load", () => {
     const roundCounter = document.querySelector("#round-counter");
     const select = document.querySelector("#options");
     const form = document.querySelector("#form");
-    let round = 0;
+    const gameStatus = document.querySelector("#game-status");
+
+    let round = 1;
     let computerScore = 0;
     let humanScore = 0;
     let computerSelection = "";
@@ -27,40 +29,44 @@ window.addEventListener("load", () => {
         console.log(
             `Human: ${humanScore}: ${humanChoice} - Computer: ${computerScore}: ${computerChoice}`
         );
-        if (round < 5) {
-            playRound(humanChoice, computerChoice);
+        if (round <= 5) {
+            const winner = playRound(humanChoice, computerChoice);
+            roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`;
+            let winnerMessage = (winner === "human") ? "Voce Venceu" :
+                                (winner === "computer") ? "Computador Venceu" :
+                                "Empate!"
+
+            gameStatus.innerHTML = winnerMessage;
+            round++;
         } else {
-            console.log("The game is over, restart");
+            gameStatus.innerHTML = "Fim de Jogo, comecar novamente!"
         }
     }
 
     // Play one round of the game
     function playRound(humanChoice, computerChoice) {
         if (humanChoice === "rock" && computerChoice === "scissors") {
-            console.log("you win");
             humanScore++;
+            return "human";
         } else if (humanChoice === "scissors" && computerChoice === "paper") {
-            console.log("you win");
             humanScore++;
+            return "human";
         } else if (humanChoice === "paper" && computerChoice === "rock") {
-            console.log("you win");
             humanScore++;
+            return "human";
         } else if (humanChoice === "rock" && computerChoice === "paper") {
-            console.log("you lose");
             computerScore++;
+            return "computer";
         } else if (humanChoice === "scissors" && computerChoice === "rock") {
-            console.log("you lose");
             computerScore++;
+            return "computer";
         } else if (humanChoice === "paper" && computerChoice === "scissors") {
-            console.log("you lose");
             computerScore++;
+            return "computer";
         } else {
-            console.log("draw");
-            round--;
+            round--
+            return "draw";
         }
-
-        round++;
-        roundCounter.innerText = `Round - ${round}`;
     }
 
     form.addEventListener("submit", (event) => {
