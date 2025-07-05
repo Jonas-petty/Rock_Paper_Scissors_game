@@ -1,4 +1,6 @@
 window.addEventListener("load", () => {
+    const select = document.querySelector("#options");
+
     // Returns on of the options randomly (rock, paper or scissors)
     function getComputerChoice() {
         const options = ["rock", "paper", "scissors"];
@@ -8,5 +10,11 @@ window.addEventListener("load", () => {
         return options[randomIndex];
     }
 
-    console.log(getComputerChoice());
+    function getHumanChoice(select) {
+        return select.target.value
+    }
+
+    select.addEventListener("change", (event) => {
+        getHumanChoice(event)
+    });
 });
