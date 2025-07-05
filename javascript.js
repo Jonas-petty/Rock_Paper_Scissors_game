@@ -3,12 +3,25 @@ window.addEventListener("load", () => {
     const select = document.querySelector("#options");
     const form = document.querySelector("#form");
     const gameStatus = document.querySelector("#game-status");
+    const restartButton = document.querySelector("#restart");
 
     let round = 1;
     let computerScore = 0;
     let humanScore = 0;
     let computerSelection = "";
     let humanSelection = "";
+
+    // restarts the game to default status
+    function restartGame() {
+        round = 1;
+        computerScore = 0;
+        humanScore = 0;
+        roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`
+        gameStatus.innerHTML = "";
+        restartButton.style.display = "none"
+    }
+
+    restartButton.addEventListener("click", restartGame)
 
     // Returns one of the options randomly (rock, paper or scissors)
     function getComputerChoice() {
@@ -32,14 +45,18 @@ window.addEventListener("load", () => {
         if (round <= 5) {
             const winner = playRound(humanChoice, computerChoice);
             roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`;
-            let winnerMessage = (winner === "human") ? "Voce Venceu" :
-                                (winner === "computer") ? "Computador Venceu" :
-                                "Empate!"
+            let winnerMessage =
+                winner === "human"
+                    ? "Voce Venceu"
+                    : winner === "computer"
+                    ? "Computador Venceu"
+                    : "Empate!";
 
             gameStatus.innerHTML = winnerMessage;
             round++;
         } else {
-            gameStatus.innerHTML = "Fim de Jogo, comecar novamente!"
+            gameStatus.innerHTML = "Fim de Jogo, comecar novamente!";
+            restartButton.style.display = "inline"
         }
     }
 
@@ -64,7 +81,7 @@ window.addEventListener("load", () => {
             computerScore++;
             return "computer";
         } else {
-            round--
+            round--;
             return "draw";
         }
     }
