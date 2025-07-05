@@ -1,5 +1,6 @@
 window.addEventListener("load", () => {
     const roundCounter = document.querySelector("#round-counter");
+    const scoreCounter = document.querySelector("#score");
     const select = document.querySelector("#options");
     const form = document.querySelector("#form");
     const gameStatus = document.querySelector("#game-status");
@@ -16,12 +17,13 @@ window.addEventListener("load", () => {
         round = 1;
         computerScore = 0;
         humanScore = 0;
-        roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`
+        roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`;
+        scoreCounter.innerText = `Score: User - ${humanScore} | Computer - ${computerScore}`
         gameStatus.innerHTML = "";
-        restartButton.style.display = "none"
+        restartButton.style.display = "none";
     }
 
-    restartButton.addEventListener("click", restartGame)
+    restartButton.addEventListener("click", restartGame);
 
     // Returns one of the options randomly (rock, paper or scissors)
     function getComputerChoice() {
@@ -38,13 +40,10 @@ window.addEventListener("load", () => {
     });
 
     function playGame(humanChoice, computerChoice) {
-        console.log(round);
-        console.log(
-            `Human: ${humanScore}: ${humanChoice} - Computer: ${computerScore}: ${computerChoice}`
-        );
         if (round <= 5) {
             const winner = playRound(humanChoice, computerChoice);
             roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`;
+            scoreCounter.innerText = `Score: User - ${humanScore} | Computer - ${computerScore}`
             let winnerMessage =
                 winner === "human"
                     ? "Voce Venceu"
@@ -56,7 +55,7 @@ window.addEventListener("load", () => {
             round++;
         } else {
             gameStatus.innerHTML = "Fim de Jogo, comecar novamente!";
-            restartButton.style.display = "inline"
+            restartButton.style.display = "inline";
         }
     }
 
