@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+    const roundCounter = document.querySelector("#round-counter");
     const select = document.querySelector("#options");
     const form = document.querySelector("#form");
     let round = 1;
@@ -54,6 +55,7 @@ window.addEventListener("load", () => {
             }
 
             round++;
+            roundCounter.innerText = `Round - ${round}`
         } else {
             console.log("The game is over, restart");
         }
