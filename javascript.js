@@ -2,7 +2,7 @@ window.addEventListener("load", () => {
     const roundCounter = document.querySelector("#round-counter");
     const select = document.querySelector("#options");
     const form = document.querySelector("#form");
-    let round = 1;
+    let round = 0;
     let computerScore = 0;
     let humanScore = 0;
     let computerSelection = "";
@@ -22,48 +22,50 @@ window.addEventListener("load", () => {
         humanSelection = event.target.value;
     });
 
-    // Play all the 5 rounds of the game
-    function playRound(humanChoice, computerChoice) {
+    function playGame(humanChoice, computerChoice) {
         console.log(round);
-        console.log(`${humanChoice} - ${computerChoice}`);
-        if (round <= 5) {
-            if (humanChoice === "rock" && computerChoice === "scissors") {
-                console.log("you win");
-            } else if (
-                humanChoice === "scissors" &&
-                computerChoice === "paper"
-            ) {
-                console.log("you win");
-            } else if (humanChoice === "paper" && computerChoice === "rock") {
-                console.log("you win");
-            }
-            if (humanChoice === "rock" && computerChoice === "paper") {
-                console.log("you lose");
-            } else if (
-                humanChoice === "scissors" &&
-                computerChoice === "rock"
-            ) {
-                console.log("you lose");
-            } else if (
-                humanChoice === "paper" &&
-                computerChoice === "scissors"
-            ) {
-                console.log("you lose");
-            } else {
-                console.log("draw");
-                round--;
-            }
-
-            round++;
-            roundCounter.innerText = `Round - ${round}`
+        console.log(
+            `Human: ${humanScore}: ${humanChoice} - Computer: ${computerScore}: ${computerChoice}`
+        );
+        if (round < 5) {
+            playRound(humanChoice, computerChoice);
         } else {
             console.log("The game is over, restart");
         }
     }
 
+    // Play one round of the game
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice === "rock" && computerChoice === "scissors") {
+            console.log("you win");
+            humanScore++;
+        } else if (humanChoice === "scissors" && computerChoice === "paper") {
+            console.log("you win");
+            humanScore++;
+        } else if (humanChoice === "paper" && computerChoice === "rock") {
+            console.log("you win");
+            humanScore++;
+        } else if (humanChoice === "rock" && computerChoice === "paper") {
+            console.log("you lose");
+            computerScore++;
+        } else if (humanChoice === "scissors" && computerChoice === "rock") {
+            console.log("you lose");
+            computerScore++;
+        } else if (humanChoice === "paper" && computerChoice === "scissors") {
+            console.log("you lose");
+            computerScore++;
+        } else {
+            console.log("draw");
+            round--;
+        }
+
+        round++;
+        roundCounter.innerText = `Round - ${round}`;
+    }
+
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
+        playGame(humanSelection, computerSelection);
     });
 });
