@@ -3,28 +3,50 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
         <title>Pedra, Papel e Tesoura</title>
     </head>
     <body>
-        <header>
-            <h1>Pedra, Papel e Tesoura</h1>
-        </header>
-        <main>
-            <p id="round-counter">Round - 1</p>
-            <p id="score">Score: User - 0 | Computer - 0</p>
-            <div id="buttons-container">
-                <ul>
-                    <li><button class="option" value="rock">Pedra</button></li>
-                    <li><button class="option" value="paper">Papel</button></li>
-                    <li><button class="option" value="scissors">Tesoura</button></li>
-                </ul>
-            </div>
-            <p id="game-status"></p>
-            <button type="button" id="restart" style="display: none">
-                Jogar Novamente
-            </button>
-        </main>
-        <footer></footer>
+        <div id="container">
+            <header>
+                <h1>Pedra, Papel e Tesoura</h1>
+            </header>
+            <main>
+                <p id="round-counter">Rodada - 1</p>
+                <p id="score">pontuação: Você - 0 | Computador - 0</p>
+                <div id="buttons-container">
+                    <ul>
+                        <li>
+                            <button type="button" class="option" data-choice="rock">
+                                <span>&#9994;</span>Pedra
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="option" data-choice="paper">
+                                <span>&#128400;</span>Papel
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="option" data-choice="scissors">
+                                <span>&#9996;</span>Tesoura
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div id="game-status-container">
+                    <p id="game-status"></p>
+                    <button
+                        type="button"
+                        id="restart"
+                        class="default"
+                        style="display: none"
+                    >
+                        Jogar Novamente
+                    </button>
+                </div>
+            </main>
+            <footer><p>Copyright <span>&#169</span> Jonas Felix</p></footer>
+        </div>
     </body>
     <script src="javascript.js"></script>
 </html>
