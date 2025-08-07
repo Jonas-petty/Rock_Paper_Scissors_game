@@ -1,8 +1,7 @@
 window.addEventListener("load", () => {
     const roundCounter = document.querySelector("#round-counter");
     const scoreCounter = document.querySelector("#score");
-    const select = document.querySelector("#options");
-    const form = document.querySelector("#form");
+    const options = document.querySelectorAll(".option");
     const gameStatus = document.querySelector("#game-status");
     const restartButton = document.querySelector("#restart");
 
@@ -18,7 +17,7 @@ window.addEventListener("load", () => {
         computerScore = 0;
         humanScore = 0;
         roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`;
-        scoreCounter.innerText = `Score: User - ${humanScore} | Computer - ${computerScore}`
+        scoreCounter.innerText = `Score: User - ${humanScore} | Computer - ${computerScore}`;
         gameStatus.innerHTML = "";
         restartButton.style.display = "none";
     }
@@ -35,15 +34,20 @@ window.addEventListener("load", () => {
     }
 
     // Returns the options chosen by the user
-    select.addEventListener("change", (event) => {
-        humanSelection = event.target.value;
+    [...options].map((option) => {
+        option.addEventListener("click", (event) => {
+            humanSelection = event.target.value;
+            computerSelection = getComputerChoice();
+            console.log(humanSelection, computerSelection)
+            playGame(humanSelection, computerSelection);
+        });
     });
 
     function playGame(humanChoice, computerChoice) {
         if (round <= 5) {
             const winner = playRound(humanChoice, computerChoice);
             roundCounter.innerText = `Round - ${round === 0 ? 1 : round}`;
-            scoreCounter.innerText = `Score: User - ${humanScore} | Computer - ${computerScore}`
+            scoreCounter.innerText = `Score: User - ${humanScore} | Computer - ${computerScore}`;
             let winnerMessage =
                 winner === "human"
                     ? "Voce Venceu"
@@ -84,10 +88,4 @@ window.addEventListener("load", () => {
             return "draw";
         }
     }
-
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        computerSelection = getComputerChoice();
-        playGame(humanSelection, computerSelection);
-    });
 });
