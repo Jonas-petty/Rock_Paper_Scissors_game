@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.2s;
+}
+
+:root {
+    font-size: 62.5%;
+    --color-1: #ffd654;
+    --color-2: #fff4d1;
+    --color-3: #091011;
+}
+
+/* Buttons */
+
+button.default {
+    font-size: 1.9rem;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-3);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+body {
+    font-size: 1.6rem;
+    background-color: var(--color-1);
+}
+
+#container {
+    max-width: 110rem;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    text-align: center;
+    padding: 3.2rem 0;
+}
+
+main {
+    flex: 1;
+    padding: 1rem;
+}
+
+#buttons-container {
+    margin: 10rem 0;
+}
+
+#buttons-container > ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.option {
+    cursor: pointer;
+    font-size: 3.2rem;
+    background-color: var(--color-2);
+    border: 2px solid var(--color-3);
+    border-radius: 0.5rem;
+
+    width: 20rem;
+    height: 20rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.option > span {
+    font-size: 6.4rem;
+}
+
+.option:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.459);
+}
+
+.option:active {
+    transform: scale(0.9);
+}
+
+#game-status-container {
+    text-align: center;
+    margin: auto;
+}
+
+footer {
+    text-align: center;
+}
+
+/* mobile */
+
+@media (max-width: 767.98px) {
+    .option {
+        font-size: 1.6rem;
+        width: 10rem;
+        height: 20rem;
+    }
+}
