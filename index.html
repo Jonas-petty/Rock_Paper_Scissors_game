@@ -10,20 +10,19 @@
             <h1>Pedra, Papel e Tesoura</h1>
         </header>
         <main>
-            <form id="form">
-                <p id="round-counter">Round - 1</p>
-                <p id="score">Score: User - 0 | Computer - 0</p>
-                <label for="options">Escolha uma opção</label>
-                <select name="options" id="options" required>
-                    <option value="">Escolha</option>
-                    <option value="rock">Pedra</option>
-                    <option value="paper">Papel</option>
-                    <option value="scissors">Tesoura</option>
-                </select>
-                <button type="submit">Confirmar</button>
-            </form>
+            <p id="round-counter">Round - 1</p>
+            <p id="score">Score: User - 0 | Computer - 0</p>
+            <div id="buttons-container">
+                <ul>
+                    <li><button class="option" value="rock">Pedra</button></li>
+                    <li><button class="option" value="paper">Papel</button></li>
+                    <li><button class="option" value="scissors">Tesoura</button></li>
+                </ul>
+            </div>
             <p id="game-status"></p>
-            <button type="button" id="restart" style="display: none;">Jogar Novamente</button>
+            <button type="button" id="restart" style="display: none">
+                Jogar Novamente
+            </button>
         </main>
         <footer></footer>
     </body>
